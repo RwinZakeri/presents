@@ -57,12 +57,18 @@ function FormInputs() {
     }
 
     axios
-      .post("http://localhost:3001/api/auth/login", {
-        username: form.username,
-        pcId: form.pcId,
-        course: form.course,
-        password: form.password,
-      })
+      .post(
+        "http://localhost:3001/api/auth/login",
+        {
+          username: form.username,
+          pcId: form.pcId,
+          course: form.course,
+          password: form.password,
+        },
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => console.log(res.data));
   };
 
@@ -147,7 +153,7 @@ function FormInputs() {
                 </svg>
                 <input
                   type="text"
-                  className="grow  placeholder:text-[#FFFFFF] placeholder:text-[14px]"
+                  className="grow placeholder:text-[14px]"
                   name="username"
                   placeholder="نام کاربری"
                   value={form.username}
