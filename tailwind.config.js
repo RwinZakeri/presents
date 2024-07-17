@@ -4,6 +4,9 @@ import daisyui from "daisyui";
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    fontFamily : {
+      iranYkan : "iranYekan"
+    } , 
     extend: {
       colors: {
         primeGreen: "#4CA773",

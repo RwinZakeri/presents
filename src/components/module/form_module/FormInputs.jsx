@@ -7,7 +7,26 @@ import data from "../../../data/db.json";
 import { MdRemoveRedEye } from "react-icons/md";
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 function FormInputs() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const validateUser = async () => {
+      try {
+        const res = await axios.get("http://localhost:3001/api/auth/whoami", {
+          withCredentials: true,
+        });
+        if (res.request.status == 200) {
+          navigate("/dashboard");
+        }
+      } catch (error) {
+        // .catch((error) => console.log(error.response.data.message));
+        console.log(error.response.data.message);
+      }
+    };
+    validateUser();
+  }, []);
+  const [status, setStatus] = useState(false);
   const [form, setForm] = useState({
     pcId: "",
     course: "",
@@ -21,16 +40,11 @@ function FormInputs() {
     course: false,
   });
   const [isShow, setIsShow] = useState(false);
-  useEffect(() => {
-    console.log(form);
-  }, [form, checked]);
-
   const changeHandler = (e) => {
     const { value, name } = e.target;
     setForm((prevForm) => ({ ...prevForm, [name]: value }));
   };
-
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     if (!form.course) {
       Toastify("error", "لطفا نام دوره را انتخاب نمایید");
@@ -55,21 +69,30 @@ function FormInputs() {
       Toastify("error", "پسورد کمتر از 8 کاراکتر یا بیشتر از 32 کاراکتر است");
       return;
     }
+    setStatus(true);
 
     axios
       .post(
         "http://localhost:3001/api/auth/login",
         {
           username: form.username,
+          password: form.password,
           pcId: form.pcId,
           course: form.course,
-          password: form.password,
         },
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       )
-      .then((res) => console.log(res.data));
+      .then((res) => {
+        setStatus(false);
+        if (res.data.statusCode == 200) {
+          navigate("/dashboard");
+        }
+      })
+      .catch((error) => {
+        if (error.response.status == 401) {
+          Toastify("error", "کاربر یافت نشد");
+        }
+      });
   };
 
   const focusHandler = (e) => {
@@ -128,7 +151,7 @@ function FormInputs() {
                   لطفا شماره سیستم خود را انتخاب کنید
                 </option>
                 {data[0].pcNun.map((item) => (
-                  <option key={item.id} value={item.num}>
+                  <option key={item.id} value={item.value}>
                     {item.num}
                   </option>
                 ))}
@@ -212,7 +235,7 @@ function FormInputs() {
           <div className="lg:w-8/12 w-full mx-auto">
             <button className="btn btn-block bg-[#0F2B21] outline-none border-none text-white ">
               ثبت
-              <span className="loading loading-spinner"></span>
+              {status && <span className="loading loading-spinner"></span>}
             </button>
           </div>
         </form>

@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "iranYekan";
+  src: url("../public/fonts/IRANYekanWeb.eot");
+  src: url("../public/fonts/IRANYekanWeb.ttf");
+  src: url("../public/fonts/IRANYekanWeb.woff");
+  src: url("../public/fonts/IRANYekanWeb.woff2");
+}
+
 /* For Chrome, Safari, and Opera */
 input:-webkit-autofill,
 textarea:-webkit-autofill,
