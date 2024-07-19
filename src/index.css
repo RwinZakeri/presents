@@ -24,3 +24,8 @@ textarea:-moz-autofill,
 select:-moz-autofill {
   color: white !important; /* Change text color to white */
 }
+
+.custom-row-height td {
+  height: 3rem; /* Fixed height for table rows */
+  vertical-align: middle; /* Vertically center the content */
+}

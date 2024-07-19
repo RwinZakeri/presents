@@ -12,6 +12,7 @@ function DashBoard() {
         const res = await axios.get("http://localhost:3001/api/auth/whoami", {
           withCredentials: true,
         });
+
         // console.log(res.data.role);
         if (res.data.role == "ADMIN") {
           console.log("ADMIN logged in ");
@@ -34,7 +35,7 @@ function DashBoard() {
       .then((res) => navigate("/"));
   };
   return (
-    <div className="w-full h-screen bg-[#0F2B21] flex flex-col items-center justify-center ">
+    <div className="w-full h-screen bg-mainBG flex flex-col items-center justify-center ">
       <div className="container w-100% max-w-[600px] h-[60%] shadow-[inset_0px_0px_10px_0px_#2b2b2b] relative bg-white p-2">
         <div className="overflow-x-auto">
           <table className="table h-32">

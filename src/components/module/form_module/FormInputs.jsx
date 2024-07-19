@@ -102,14 +102,14 @@ function FormInputs() {
 
   return (
     <>
-      <div className="w-full h-full bg-mainBgImage bg-center bg-cover rounded-xl shadow-[0px_0px_55px_#444]">
+      <div className="w-full h-full bg-mainBgImage bg-center bg-cover rounded-xl shadow-[inset_0px_0px_20px_10px_#22543d]">
         <form
           onSubmit={submitHandler}
           className="w-full h-full flex flex-col items-center justify-center  backdrop-blur-[3px] rounded-xl text-start px-3 relative "
         >
-          <div className="w-full gap-2 flex flex-col items-center absolute top-0">
+          <div className="w-full gap-4 flex flex-col items-center absolute top-[-90px] 2xl:top-0">
             <img src="../../../../public/images/Logo.png" alt="" />
-            <h1 className=" font-bold text-2xl text-white ">
+            <h1 className=" font-bold text-md text-2xl 2xl:text-xl text-white ">
               حضور غیاب انلاین سایت صدرا
             </h1>
           </div>
@@ -233,7 +233,7 @@ function FormInputs() {
           </div>
 
           <div className="lg:w-8/12 w-full mx-auto">
-            <button className="btn btn-block bg-[#0F2B21] outline-none border-none text-white ">
+            <button className="btn btn-block bg-mainBG hover:bg-[#194536] outline-none border-none text-white ">
               ثبت
               {status && <span className="loading loading-spinner"></span>}
             </button>

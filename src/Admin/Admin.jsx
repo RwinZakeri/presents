@@ -65,7 +65,7 @@ function Admin() {
       .then((res) => navigate("/"));
   };
   return (
-    <div className="w-full h-screen bg-[#0F2B21] flex items-center justify-end flex-col">
+    <div className="w-full h-auto  bg-mainBG flex items-center justify-end flex-col">
       <div className="w-4/5 h-auto flex items-center justify-between py-2">
         <Link to={"/admin/logs"}>
           <button className="btn relative group transition-all">
@@ -105,7 +105,7 @@ function Admin() {
         />
         <input type="submit" value="جستجو" />
       </form> */}
-      <div className="w-4/5 h-[100%] bg-[#e0e0e0]">
+      <div className="w-4/5 h-[100%] bg-[#e0e0e0] overflow-x-hidden">
         <div className="overflow-x-auto">
           <table className="table">
             {/* head */}
@@ -138,7 +138,7 @@ function Admin() {
                     </th>
                     <td>{item.username}</td>
                     <td>{item.pcId}</td>
-                    <td className="max-w-12">{item?.nationalCode}</td>
+                    <td className="max-w-12 ">{item?.nationalCode}</td>
                     <td
                       className="text-center flex items-center justify-center"
                       onClick={() =>

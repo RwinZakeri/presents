@@ -2,8 +2,8 @@ import { ToastContainer } from "react-toastify";
 import FormInputs from "../module/form_module/FormInputs";
 function Form() {
   return (
-    <div className="w-full h-screen flex items-center bg-[#0F2B21] justify-center ">
-      <div className=" w-[55%] h-[70%] flex shadow-[0px_0px]">
+    <div className="w-full h-screen flex items-center bg-mainBG justify-center ">
+      <div className=" w-[55%] h-[70%] flex ">
         <div className="w-full h-full pb-2 relative">
           <FormInputs />
         </div>

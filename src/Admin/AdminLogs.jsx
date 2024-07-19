@@ -1,10 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import "../index.css"; // Import the CSS file
+
 function AdminLogs() {
+  const navigate = useNavigate();
   const [selected, setSelected] = useState("day");
   const [data, setData] = useState([]);
   const { id } = useParams();
+
   const clickHandler = (e) => {
     setSelected(e.target.attributes.id?.textContent);
   };
@@ -20,10 +24,19 @@ function AdminLogs() {
       setData(res.data.logs);
     };
     fetchData();
+    const whoami = async () => {
+      const res = await axios.get("http://localhost:3001/api/auth/whoami", {
+        withCredentials: true,
+      });
+      if (res.data.role !== "ADMIN") {
+        navigate("/");
+      }
+    };
+    whoami();
   }, [selected]);
-  // data?.am?.filter((item) => item.stuId.nationalCode == id)
+
   return (
-    <div className="w-full bg-[#0F2B21] overflow-x-hidden">
+    <div className="w-full bg-mainBG overflow-x-hidden">
       <div className="w-4/5 h-11 bg-slate-300 mx-auto flex items-center gap-3">
         <label htmlFor="day" className="flex gap-3" onClick={clickHandler}>
           روز
@@ -78,7 +91,7 @@ function AdminLogs() {
                 ? data?.am
                     ?.filter((item) => item?.stuId?.nationalCode == id)
                     .map((item, index) => (
-                      <tr key={index}>
+                      <tr key={index} className="custom-row-height">
                         <td>{index + 1}</td>
                         <td>
                           {item?.stuId?.firstName} {item?.stuId?.lastName}
@@ -93,7 +106,7 @@ function AdminLogs() {
                       </tr>
                     ))
                 : data?.am?.map((item, index) => (
-                    <tr key={index}>
+                    <tr key={index} className="custom-row-height">
                       <td>{index + 1}</td>
                       <td>
                         {item?.stuId?.firstName} {item?.stuId?.lastName}
@@ -134,7 +147,7 @@ function AdminLogs() {
                 ? data?.pm
                     ?.filter((item) => item.stuId?.nationalCode == id)
                     .map((item, index) => (
-                      <tr key={index}>
+                      <tr key={index} className="custom-row-height">
                         <td>{index + 1}</td>
                         <td>
                           {item?.stuId?.firstName} {item?.stuId?.lastName}
@@ -149,7 +162,7 @@ function AdminLogs() {
                       </tr>
                     ))
                 : data?.pm?.map((item, index) => (
-                    <tr key={index}>
+                    <tr key={index} className="custom-row-height">
                       <td>{index + 1}</td>
                       <td>
                         {item?.stuId?.firstName} {item?.stuId?.lastName}

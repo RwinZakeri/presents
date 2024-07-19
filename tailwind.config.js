@@ -4,13 +4,14 @@ import daisyui from "daisyui";
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    fontFamily : {
-      iranYkan : "iranYekan"
-    } , 
+    fontFamily: {
+      iranYkan: "iranYekan",
+    },
     extend: {
       colors: {
         primeGreen: "#4CA773",
         primeBlack: "#000000", // Assuming you meant to define black as #000000
+        mainBG: "#0F2B21",
       },
       backgroundImage: {
         mainBgImage: "url('./public/images/finalbg.png')",

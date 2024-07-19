@@ -126,5 +126,44 @@
         "value": "software"
       }
     ]
+  },
+  {
+    "inputsData": [
+      {
+        "id": 1,
+        "name": "name",
+        "typeInput": "text",
+        "placholderValue": "nationalCode",
+        "placeholder": "نام"
+      },
+      {
+        "id": 2,
+        "name": "lastname",
+        "typeInput": "text",
+        "placholderValue": "",
+        "placeholder": "نام خانوادگی"
+      },
+      {
+        "id": 3,
+        "name": "username",
+        "typeInput": "text",
+        "placholderValue": "nationalCode",
+        "placeholder": "نام کاربری"
+      },
+      {
+        "id": 4,
+        "name": "nationalCode",
+        "typeInput": "password",
+        "placholderValue": "nationalCode",
+        "placeholder": "کدملی"
+      },
+      {
+        "id": 5,
+        "name": "pcId",
+        "typeInput": "select",
+        "placholderValue": "nationalCode",
+        "placeholder": "شماره سیستم"
+      }
+    ]
   }
 ]
