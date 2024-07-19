@@ -13,7 +13,6 @@ function DashBoard() {
           withCredentials: true,
         });
 
-        // console.log(res.data.role);
         if (res.data.role == "ADMIN") {
           console.log("ADMIN logged in ");
           navigate("/admin");

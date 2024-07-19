@@ -35,18 +35,15 @@ function AdminEdit() {
           </h1>
         </div>
         <div className="w-full grid grid-cols-2 gap-1">
-          {inputsData[2].inputsData.map((item) => {
-            return (
-              <>
-                <InputEdit
-                  setFormData={setFormData}
-                  formData={formData}
-                  {...item}
-                  stuId={id}
-                />
-              </>
-            );
-          })}
+          {inputsData[2].inputsData.map((item, index) => (
+            <InputEdit
+              key={index + 1}
+              setFormData={setFormData}
+              formData={formData}
+              {...item}
+              stuId={id}
+            />
+          ))}
         </div>
       </div>
       <ToastContainer />

@@ -20,8 +20,8 @@ function FormInputs() {
           navigate("/dashboard");
         }
       } catch (error) {
-        // .catch((error) => console.log(error.response.data.message));
         console.log(error.response.data.message);
+        // Toastify("error", error.response.data.message);
       }
     };
     validateUser();
@@ -108,7 +108,7 @@ function FormInputs() {
           className="w-full h-full flex flex-col items-center justify-center  backdrop-blur-[3px] rounded-xl text-start px-3 relative "
         >
           <div className="w-full gap-4 flex flex-col items-center absolute top-[-90px] 2xl:top-0">
-            <img src="../../../../public/images/Logo.png" alt="" />
+            <img src="/images/Logo.png" alt="" />
             <h1 className=" font-bold text-md text-2xl 2xl:text-xl text-white ">
               حضور غیاب انلاین سایت صدرا
             </h1>
@@ -165,7 +165,7 @@ function FormInputs() {
           </div>
           <div className="flex flex-wrap justify-center 2xl:flex-nowrap py-2 w-full lg:w-8/12 gap-2  mx-auto text-[#FFFFFF]">
             <div className=" w-full 2xl:w-1/2 h-[70px] ">
-              <label className="input input-bordered bg-[#1D232A] flex items-center gap-2">
+              <label className="input input-bordered bg-[#1D232A] flex items-center gap-2 text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
@@ -176,7 +176,7 @@ function FormInputs() {
                 </svg>
                 <input
                   type="text"
-                  className="grow placeholder:text-[14px]"
+                  className="grow placeholder:text-[14px] placeholder:text-white "
                   name="username"
                   placeholder="نام کاربری"
                   value={form.username}

@@ -5,6 +5,8 @@ import { Toastify } from "../toast_module/Toastify";
 import data from "../../../data/db.json";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
 function InputEdit({
   id,
   name,
@@ -15,8 +17,8 @@ function InputEdit({
   setFormData,
   stuId,
 }) {
+  const navigate = useNavigate();
   const [userEditData, setUserEditData] = useState([]);
-  // console.log(name);
   const myArr = ["nationalCode", "pcId", "username"];
 
   useEffect(() => {
@@ -35,7 +37,24 @@ function InputEdit({
       });
     };
     fetchData();
+    const fetchUserRole = async () => {
+      try {
+        const res = await axios.get("http://localhost:3001/api/auth/whoami", {
+          withCredentials: true,
+        });
+        if (res.data.role == "USER") {
+          navigate("/dashboard");
+        }
+      } catch (error) {
+        if (error.response.status == 401) {
+          navigate("/");
+        }
+        // if()
+      }
+    };
+    fetchUserRole();
   }, []);
+
   const changeHandler = (e) => {
     const { value } = e.target;
     const { name } = e.target;
@@ -58,14 +77,12 @@ function InputEdit({
             withCredentials: true,
           }
         );
-        console.log(res);
         if (res.status == 200) {
           Toastify("success", "دیتا با موفقیت ثبت شد");
         } else {
           Toastify("error", "مشکلی پیش امده");
         }
       } catch (error) {
-        console.log(error);
         Toastify("error", error.message);
       }
     };
@@ -75,7 +92,7 @@ function InputEdit({
   return (
     <>
       {typeInput !== "select" ? (
-        <div className="w-full ">
+        <div className="w-full">
           <label className="input input-bordered bg-[#1D232A] flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +117,6 @@ function InputEdit({
                   ? userEditData.firstName
                   : ""
               }`}
-              // value={formData?.name}
               value={
                 name == "nationalCode"
                   ? formData?.nationalCode
@@ -112,22 +128,19 @@ function InputEdit({
                   ? formData?.username
                   : ""
               }
-              onChange={(e) => changeHandler(e)}
-              // onFocus={focusHandler}
+              onChange={changeHandler}
             />
           </label>
         </div>
       ) : (
         <div className="col-span-2">
           <select
-            defaultValue=""
             value={formData.pcId}
-            className="select bg-[#1D232A] select-bordered w-full text-[#FFFFFF] "
+            className="select bg-[#1D232A] select-bordered w-full text-[#FFFFFF]"
             onChange={changeHandler}
-            // onFocus={focusHandler}
             name="pcId"
           >
-            <option value={""} disabled>
+            <option value="" disabled>
               لطفا شماره سیستم را انتخاب کنید | {userEditData.pcId}
             </option>
             {data[0].pcNun.map((item) => (

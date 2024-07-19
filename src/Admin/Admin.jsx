@@ -18,8 +18,6 @@ function Admin() {
   const [data, setData] = useState([]);
   const dateTag = useRef();
   // const selectDay = (e) => {
-  //   console.log(selectedDay);
-  //   console.log(Object.values(e).join("/"));
   //   setSelectedDay(() => Object.values(e).join("/"));
   // };
 
@@ -34,7 +32,6 @@ function Admin() {
         const res = await axios.get("http://localhost:3001/api/auth/whoami", {
           withCredentials: true,
         });
-        // console.log(res.data.role);
         if (res.data.role == "USER") {
           navigate("/dashboard");
         }
@@ -119,37 +116,32 @@ function Admin() {
               </tr>
             </thead>
             <tbody>
-              {data?.map((item, index) => {
-                return (
-                  <tr
-                    className={`hover ${
-                      (item.username == "broken" ||
-                        item.username == "nobody") &&
-                      "bg-red-200"
-                    }`}
-                    key={item.id}
+              {data?.map((item, index) => (
+                <tr
+                  className={`hover ${
+                    (item.username == "broken" || item.username == "nobody") &&
+                    "bg-red-200"
+                  }`}
+                  key={index + 1}
+                >
+                  <th
+                    onClick={() => navigate(`/admin/logs/${item.nationalCode}`)}
                   >
-                    <th
-                      onClick={() =>
-                        navigate(`/admin/logs/${item.nationalCode}`)
-                      }
-                    >
-                      <TiDocumentText />
-                    </th>
-                    <td>{item.username}</td>
-                    <td>{item.pcId}</td>
-                    <td className="max-w-12 ">{item?.nationalCode}</td>
-                    <td
-                      className="text-center flex items-center justify-center"
-                      onClick={() =>
-                        navigate(`/admin/edit/${item?.nationalCode}`)
-                      }
-                    >
-                      <FaPen />
-                    </td>
-                  </tr>
-                );
-              })}
+                    <TiDocumentText />
+                  </th>
+                  <td>{item.username}</td>
+                  <td>{item.pcId}</td>
+                  <td className="max-w-12 ">{item?.nationalCode}</td>
+                  <td
+                    className="text-center flex items-center justify-center"
+                    onClick={() =>
+                      navigate(`/admin/edit/${item?.nationalCode}`)
+                    }
+                  >
+                    <FaPen />
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
