@@ -62,7 +62,7 @@ function Admin() {
       .then((res) => navigate("/"));
   };
   return (
-    <div className="w-full h-auto  bg-mainBG flex items-center justify-end flex-col">
+    <div className="w-full h-auto bg-mainBG flex items-center justify-end flex-col">
       <div className="w-4/5 h-auto flex items-center justify-between py-2">
         <Link to={"/admin/logs"}>
           <button className="btn relative group transition-all">
