@@ -62,7 +62,7 @@ function Admin() {
       .then((res) => navigate("/"));
   };
   return (
-    <div className="w-full h-auto bg-mainBG flex items-center justify-end flex-col">
+    <div className="w-full h-screen bg-mainBG flex items-center justify-end flex-col">
       <div className="w-4/5 h-auto flex items-center justify-between py-2">
         <Link to={"/admin/logs"}>
           <button className="btn relative group transition-all">
@@ -110,36 +110,48 @@ function Admin() {
               <tr>
                 <th>id</th>
                 <th>نام کاربری</th>
+                <th>نام و نام خانوادگی</th>
                 <th>شماره کامپیوتر</th>
                 <th>کد ملی</th>
-                <th></th>
+                <th className="relative -left-[6%] 2xl:-left-[7%]">عملیات</th>
               </tr>
             </thead>
             <tbody>
               {data?.map((item, index) => (
                 <tr
                   className={`hover ${
-                    (item.username == "broken" || item.username == "nobody") &&
-                    "bg-red-200"
+                    item.username == "broken" || item.username == "nobody"
+                      ? "bg-red-200"
+                      : index % 2
+                      ? "to-blue-400"
+                      : "bg-gray-300"
                   }`}
                   key={index + 1}
                 >
-                  <th
-                    onClick={() => navigate(`/admin/logs/${item.nationalCode}`)}
-                  >
-                    <TiDocumentText />
-                  </th>
+                  <td>{index + 1}</td>
+
                   <td>{item.username}</td>
+                  <td>
+                    {item.firstName} {item.lastName}
+                  </td>
                   <td>{item.pcId}</td>
                   <td className="max-w-12 ">{item?.nationalCode}</td>
                   <td
-                    className="text-center flex items-center justify-center"
+                    className="text-center flex items-center justify-center cursor-pointer max-w-12
+                    mx-auto "
                     onClick={() =>
                       navigate(`/admin/edit/${item?.nationalCode}`)
                     }
                   >
                     <FaPen />
                   </td>
+                  <th
+                    onClick={() => navigate(`/admin/logs/${item.nationalCode}`)}
+                    className="cursor-pointer max-w-12
+                    mx-auto"
+                  >
+                    <TiDocumentText size={18} />
+                  </th>
                 </tr>
               ))}
             </tbody>

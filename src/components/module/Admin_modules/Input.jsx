@@ -112,9 +112,9 @@ function InputEdit({
                   : name == "nationalCode"
                   ? userEditData?.nationalCode
                   : name == "lastname"
-                  ? userEditData.lastName
+                  ? userEditData.lastName || "تعریف نشده"
                   : name == "name"
-                  ? userEditData.firstName
+                  ? userEditData.firstName || "تعریف نشده"
                   : ""
               }`}
               value={

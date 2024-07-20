@@ -14,7 +14,8 @@ export default {
         mainBG: "#0F2B21",
       },
       backgroundImage: {
-        mainBgImage: "url('/public/authBackground.jpg')",
+        mainBgImage:
+          "url('./src/components/module/form_module/authBackground.jpg')",
       },
     },
   },

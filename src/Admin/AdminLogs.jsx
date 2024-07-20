@@ -72,7 +72,9 @@ function AdminLogs() {
           />
         </label>
       </div>
-
+      <h1 className="w-4/5 mx-auto text-white text-[25px] text-center h-24 bg-green-800 leading-[6rem]">
+        صبح
+      </h1>
       <div className="w-4/5 mx-auto max-h-[100vh] bg-white overflow-y-scroll">
         <div className="overflow-x-auto h-[100vh]">
           <table className="table h-full">

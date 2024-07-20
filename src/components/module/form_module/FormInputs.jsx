@@ -102,7 +102,12 @@ function FormInputs() {
 
   return (
     <>
-      <div className="w-full h-full bg-mainBgImage bg-center bg-cover rounded-xl shadow-[inset_0px_0px_20px_10px_#22543d]">
+      <div
+        className="w-full h-full bg-center bg-cover rounded-xl shadow-[inset_0px_0px_20px_10px_#22543d]"
+        style={{
+          backgroundImage: "url('/images/authBackground.jpg')",
+        }}
+      >
         <form
           onSubmit={submitHandler}
           className="w-full h-full flex flex-col items-center justify-center  backdrop-blur-[3px] rounded-xl text-start px-3 relative "
