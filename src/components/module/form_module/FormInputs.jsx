@@ -85,6 +85,13 @@ function FormInputs() {
       .then((res) => {
         setStatus(false);
         if (res.data.statusCode == 200) {
+          const currentTime = new Date();
+
+          let hours = currentTime.getHours();
+          let minutes = currentTime.getMinutes();
+          let seconds = currentTime.getSeconds();
+          localStorage.setItem("time", [hours, minutes, seconds]);
+
           navigate("/dashboard");
         }
       })
